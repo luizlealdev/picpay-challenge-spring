@@ -15,6 +15,11 @@ public class WalletType {
     public WalletType() {
     }
 
+    public WalletType(Long id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }
