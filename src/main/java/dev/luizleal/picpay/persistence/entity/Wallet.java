@@ -1,6 +1,7 @@
 package dev.luizleal.picpay.persistence.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
 
 import java.math.BigDecimal;
 
@@ -31,7 +32,8 @@ public class Wallet {
     @ManyToOne
     private WalletType walletType;
 
-    public Wallet() {}
+    public Wallet() {
+    }
 
     public Wallet(String fullName, String cpfCnpj, String email, String password, WalletType walletType) {
         this.fullName = fullName;
@@ -95,5 +97,22 @@ public class Wallet {
 
     public void setWalletType(WalletType walletType) {
         this.walletType = walletType;
+    }
+
+
+    public boolean isTransferAllowedForWalletType() {
+        return this.walletType.equals(WalletTypeEnum.USER.get());
+    }
+
+    public boolean isBalanceGreaterOrEqualThan(BigDecimal value) {
+        return this.balance.doubleValue() >= value.doubleValue();
+    }
+
+    public void debit(BigDecimal value) {
+        this.balance = this.balance.subtract(value);
+    }
+
+    public void credit(BigDecimal value) {
+        this.balance = this.balance.add(value);
     }
 }

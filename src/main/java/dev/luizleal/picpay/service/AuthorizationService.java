@@ -1,8 +1,8 @@
 package dev.luizleal.picpay.service;
 
 import dev.luizleal.picpay.client.AuthorizationClient;
+import dev.luizleal.picpay.controller.dto.TransferDTO;
 import dev.luizleal.picpay.exception.PicPayException;
-import dev.luizleal.picpay.persistence.entity.Transfer;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,7 +14,7 @@ public class AuthorizationService {
         this.authorizationClient = authorizationClient;
     }
 
-    public boolean isAuthorized(Transfer transfer){
+    public boolean isAuthorized(TransferDTO transfer){
         var resp = authorizationClient.isAuthorized();
         if (resp.getStatusCode().isError()) {
             throw new PicPayException();

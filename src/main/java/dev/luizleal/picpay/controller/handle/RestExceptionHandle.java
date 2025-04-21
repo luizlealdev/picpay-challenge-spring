@@ -1,4 +1,4 @@
-package dev.luizleal.picpay.controller;
+package dev.luizleal.picpay.controller.handle;
 
 import dev.luizleal.picpay.exception.PicPayException;
 import org.springframework.http.HttpStatus;
